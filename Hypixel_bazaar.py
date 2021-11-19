@@ -415,31 +415,30 @@ while True:
         
     print("I highly recommend checking if price is stable, and if volume can support your trade first.")
     print("Suggested source: bazaartracker.com")
-    print("Items that have large spread, and $volume shown (May not be accurate)")
+    print("Items that have large spread, and $500m+ combined volume shown(May not be accurate)")
     num = 0
     for i in dict(sorted(profitable_items.items(),reverse=True, key=lambda item: item[1])): #Sort large spread items and print top 10 in descending order (x% profit for item)
         difference = profitable_items_buy_price[i] - profitable_items_sell_price[i]
         difference = float("{:.2f}".format(difference)) #Round to nearest 2 decimals.
         profitable_items[i] = float("{:.2f}".format(profitable_items[i]))
         weekly_sell_item_volume = bazaar_data["products"][i]["quick_status"]["sellMovingWeek"]
-        current_sell_price = profitable_items_buy_price[i]
         weekly_buy_item_volume = bazaar_data["products"][i]["quick_status"]["buyMovingWeek"]
-        current_buy_price = profitable_items_sell_price[i]
-        coin_avg_buy_volume = weekly_buy_item_volume * current_buy_price
-        coin_avg_sell_volume = weekly_sell_item_volume * current_sell_price
+        combined_weekly_volume = weekly_sell_item_volume + weekly_buy_item_volume
+        avg_price = profitable_items_buy_price[i] - (difference/2)
+        combined_coin_volume = combined_weekly_volume * avg_price
         if num < 20:
-            if difference >= 20: #Coin difference from buy/sell
-                if coin_avg_buy_volume and coin_avg_sell_volume >= 0:
+            if avg_price >= 50: #Coin difference from buy/sell
+                if combined_coin_volume >= 500000000:
                     if profitable_npc_items_sell_price[i] >= 0:
                         num = num + 1
                         try:
-                            print(f"{profitable_items[i]}% profit: {i}. Buy: {profitable_items_sell_price[i]}. Sell: {profitable_items_buy_price[i]}. NPC: {profitable_npc_items_sell_price[i]}. b/sVol: ${human_format(coin_avg_buy_volume)}|${human_format(coin_avg_sell_volume)}")
+                            print(f"{profitable_items[i]}% profit: {i}. Buy: {profitable_items_sell_price[i]}. Sell: {profitable_items_buy_price[i]}. NPC: {profitable_npc_items_sell_price[i]}. Vol: ${human_format(combined_coin_volume)}")
                         except Exception as e:
                             print(e, file=sys.stderr)
     
     print("")
     print("")
-    print("Items to profitably sell to NPC and $volume shown(May not be accurate)")
+    print("Items to profitably sell to NPC and $100m+ InstaSell volume(May not be accurate)")
     num = 0
     for i in dict(sorted(profitable_npc_items.items(),reverse=True, key=lambda item: item[1])): #Sort profit NPC sells and print top 10 in descending order (x% profit for item)
         if profitable_npc_items_sell_price[i] == "MISSING":
@@ -449,14 +448,14 @@ while True:
             difference = float("{:.2f}".format(difference)) #Round to nearest 2 decimals.
         profitable_npc_items[i] = float("{:.2f}".format(profitable_npc_items[i]))
         weekly_sell_item_volume = bazaar_data["products"][i]["quick_status"]["sellMovingWeek"]
-        current_sell_price = profitable_npc_items_sell_price[i]
-        coin_avg_sell_volume = weekly_sell_item_volume * current_sell_price
+        avg_price = profitable_items_buy_price[i] - (difference/2)
+        sell_coin_volume = weekly_sell_item_volume * avg_price
         if num < 10: #Show top 10 profitable NPC sells.
-            if difference > 10: #Coin difference from buy/sell
-                if coin_avg_sell_volume >= 0:
+            if avg_price > 50: #Coin difference from buy/sell
+                if sell_coin_volume >= 100000000:
                     num = num + 1
                     try:
-                        print(f"{profitable_npc_items[i]}% profit: {i}. Buy: {profitable_npc_items_buy_price[i]}. Sell: {profitable_npc_items_sell_price[i]}. sVol: ${human_format(coin_avg_sell_volume)}")
+                        print(f"{profitable_npc_items[i]}% profit: {i}. Buy: {profitable_npc_items_buy_price[i]}. Sell: {profitable_npc_items_sell_price[i]}. sVol: ${human_format(sell_coin_volume)}")
                     except Exception as e:
                         print(f"Error: {e}")
 

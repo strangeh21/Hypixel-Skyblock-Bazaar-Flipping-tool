@@ -412,14 +412,13 @@ while True:
             percent_from_bz_to_npc[i] = 0
         profitable_npc_items_buy_price[i] = data_highest_buy_price
         profitable_npc_items_sell_price[i] = data_npc_sell_price    
-        
-    print("I highly recommend checking if price is stable, and if volume can support your trade first.")
-    print("Suggested source: bazaartracker.com")
-    print("Items that have large spread, and $500m+ combined volume shown(May not be accurate)")
+    print("Suggested source for price stability: bazaartracker.com")
+    print("Items that have large spread, and $500m+ combined volume shown(May not be accurate). PPI: Profit per inv.")
     num = 0
     for i in dict(sorted(profitable_items.items(),reverse=True, key=lambda item: item[1])): #Sort large spread items and print top 10 in descending order (x% profit for item)
         difference = profitable_items_buy_price[i] - profitable_items_sell_price[i]
         difference = float("{:.2f}".format(difference)) #Round to nearest 2 decimals.
+        profit_per_inventory = difference * 2240
         profitable_items[i] = float("{:.2f}".format(profitable_items[i]))
         weekly_sell_item_volume = bazaar_data["products"][i]["quick_status"]["sellMovingWeek"]
         weekly_buy_item_volume = bazaar_data["products"][i]["quick_status"]["buyMovingWeek"]
@@ -432,13 +431,13 @@ while True:
                     if profitable_npc_items_sell_price[i] >= 0:
                         num = num + 1
                         try:
-                            print(f"{profitable_items[i]}% profit: {i}. Buy: {profitable_items_sell_price[i]}. Sell: {profitable_items_buy_price[i]}. NPC: {profitable_npc_items_sell_price[i]}. Vol: ${human_format(combined_coin_volume)}")
+                            print(f"{profitable_items[i]}% profit: {i}. Buy: {profitable_items_sell_price[i]}. Sell: {profitable_items_buy_price[i]}. NPC: {profitable_npc_items_sell_price[i]}. PPI: ${human_format(profit_per_inventory)} Vol: ${human_format(combined_coin_volume)}")
                         except Exception as e:
                             print(e, file=sys.stderr)
     
     print("")
     print("")
-    print("Items to profitably sell to NPC and $100m+ InstaSell volume(May not be accurate)")
+    print("Items to profitably sell to NPC and $100m+ InstaSell volume(May not be accurate). PPI: Profit per inv")
     num = 0
     for i in dict(sorted(profitable_npc_items.items(),reverse=True, key=lambda item: item[1])): #Sort profit NPC sells and print top 10 in descending order (x% profit for item)
         if profitable_npc_items_sell_price[i] == "MISSING":
@@ -446,6 +445,7 @@ while True:
         else:
             difference = profitable_npc_items_sell_price[i] - profitable_npc_items_buy_price[i]
             difference = float("{:.2f}".format(difference)) #Round to nearest 2 decimals.
+        profit_per_inventory = difference * 2240
         profitable_npc_items[i] = float("{:.2f}".format(profitable_npc_items[i]))
         weekly_sell_item_volume = bazaar_data["products"][i]["quick_status"]["sellMovingWeek"]
         avg_price = profitable_items_buy_price[i] - (difference/2)
@@ -455,7 +455,7 @@ while True:
                 if sell_coin_volume >= 100000000:
                     num = num + 1
                     try:
-                        print(f"{profitable_npc_items[i]}% profit: {i}. Buy: {profitable_npc_items_buy_price[i]}. Sell: {profitable_npc_items_sell_price[i]}. sVol: ${human_format(sell_coin_volume)}")
+                        print(f"{profitable_npc_items[i]}% profit: {i}. Buy: {profitable_npc_items_buy_price[i]}. Sell: {profitable_npc_items_sell_price[i]}. PPI: ${human_format(profit_per_inventory)} sVol: ${human_format(sell_coin_volume)}")
                     except Exception as e:
                         print(f"Error: {e}")
 

@@ -21,7 +21,7 @@ npc_sell_prices = {
     "ENCHANTED_GOLDEN_CARROT": 20608, 
     "ENCHANTED_RABBIT_HIDE": 2880, 
     "FLAWED_AMETHYST_GEM": 320, 
-    "PERFECT_JADE_GEM": 10240000, 
+    "PERFECT_JADE_GEM": 0, 
     "ENCHANTED_BIRCH_LOG": 320, 
     "ENCHANTED_GUNPOWDER": 640, 
     "ENCHANTED_MELON": 160,
@@ -55,10 +55,10 @@ npc_sell_prices = {
     "REFINED_MITHRIL": 256000,
     "SPIDER_EYE": 3,
     "RAW_FISH": 6,
-    "PERFECT_RUBY_GEM": 10240000,
+    "PERFECT_RUBY_GEM": 0,
     "ENCHANTED_PUFFERFISH": 2400,
     "YOGGIE": 100,
-    "PERFECT_JASPER_GEM": 10240000,
+    "PERFECT_JASPER_GEM": 0,
     "POTATO_ITEM": 1,
     "ENCHANTED_NETHERRACK": 160,
     "ENCHANTED_HARD_STONE": 576,
@@ -104,7 +104,7 @@ npc_sell_prices = {
     "FINE_JADE_GEM": 25600,
     "FLAWED_RUBY_GEM": 320,
     "RAW_CHICKEN": 4,
-    "FLAWLESS_JASPER_GEM": 2048000,
+    "FLAWLESS_JASPER_GEM": 0,
     "ANCIENT_CLAW": 200,
     "PLASMA_BUCKET": 50000,
     "ENCHANTED_LAPIS_LAZULI": 160,
@@ -117,7 +117,7 @@ npc_sell_prices = {
     "ENCHANTED_LEATHER": 1700,
     "ENCHANTED_SHARK_FIN": 0,
     "ENCHANTED_SPONGE": 2000,
-    "PERFECT_AMBER_GEM": 10240000,
+    "PERFECT_AMBER_GEM": 0,
     "HAY_BLOCK": 9,
     "INK_SACK": 2,
     "FLINT": 4,
@@ -159,7 +159,7 @@ npc_sell_prices = {
     "BLAZE_ROD": 9,
     "ENCHANTED_DARK_OAK_LOG": 320,
     "YOUNG_FRAGMENT": 0,
-    "FLAWLESS_TOPAZ_GEM": 2048000,
+    "FLAWLESS_TOPAZ_GEM": 0,
     "ENCHANTED_CLOWNFISH": 3200,
     "REFINED_MINERAL": 0,
     "ENCHANTED_GOLD": 640,
@@ -169,7 +169,7 @@ npc_sell_prices = {
     "ROUGH_RUBY_GEM": 4,
     "GOBLIN_EGG_BLUE": 0,
     "NULL_ATOM": 33333,
-    "FLAWLESS_RUBY_GEM": 2048000,
+    "FLAWLESS_RUBY_GEM": 0,
     "LOG:1": 2,
     "TITANIUM_ORE": 20,
     "CATALYST": 500,
@@ -181,7 +181,7 @@ npc_sell_prices = {
     "ENCHANTED_INK_SACK": 160,
     "ENCHANTED_CACTUS": 25600,
     "ENCHANTED_SUGAR_CANE": 51200,
-    "FLAWLESS_SAPPHIRE_GEM": 2048000,
+    "FLAWLESS_SAPPHIRE_GEM": 0,
     "ENCHANTED_COOKED_SALMON": 256000,
     "ENCHANTED_SEEDS": 80,
     "CONCENTRATED_STONE": 200000,
@@ -208,7 +208,7 @@ npc_sell_prices = {
     "GLOWSTONE_DUST": 2,
     "GOLD_INGOT": 4,
     "REVENANT_VISCERA": 128,
-    "PERFECT_AMETHYST_GEM": 10240000,
+    "PERFECT_AMETHYST_GEM": 0,
     "TARANTULA_SILK": 128,
     "TITANIC_EXP_BOTTLE": 5000,
     "ENCHANTED_MUTTON": 800,
@@ -237,7 +237,7 @@ npc_sell_prices = {
     "OLD_FRAGMENT": 0,
     "GREEN_GIFT": 0,
     "WORM_MEMBRANE": 0,
-    "FLAWLESS_AMETHYST_GEM": 2048000,
+    "FLAWLESS_AMETHYST_GEM": 0,
     "ROUGH_TOPAZ_GEM": 4,
     "PACKED_ICE": 4.5,
     "ROUGH_AMBER_GEM": 4,
@@ -252,7 +252,7 @@ npc_sell_prices = {
     "ENDER_PEARL": 7,
     "ENCHANTED_COAL_BLOCK": 51000,
     "WEREWOLF_SKIN": 0,
-    "PERFECT_TOPAZ_GEM": 10240000,
+    "PERFECT_TOPAZ_GEM": 0,
     "ENCHANTED_PRISMARINE_CRYSTALS": 400,
     "GOBLIN_EGG": 0,
     "DAEDALUS_STICK": 250000,
@@ -295,7 +295,7 @@ npc_sell_prices = {
     "ENCHANTED_MAGMA_CREAM": 1280,
     "ENCHANTED_FIREWORK_ROCKET": 41000,
     "STARFALL": 15,
-    "FLAWLESS_JADE_GEM": 2048000,
+    "FLAWLESS_JADE_GEM": 0,
     "HARD_STONE": 1,
     "FLAWED_TOPAZ_GEM": 320,
     "LEATHER": 3,
@@ -308,12 +308,12 @@ npc_sell_prices = {
     "ENCHANTED_BREAD": 60,
     "FUMING_POTATO_BOOK": 0,
     "FINE_JASPER_GEM": 25600,
-    "FLAWLESS_AMBER_GEM": 2048000,
+    "FLAWLESS_AMBER_GEM": 0,
     "ENCHANTED_CHARCOAL": 320,
     "FLAWED_SAPPHIRE_GEM": 320,
     "ENCHANTED_BLAZE_POWDER": 1440,
     "SUMMONING_EYE": 0,
-    "PERFECT_SAPPHIRE_GEM": 10240000,
+    "PERFECT_SAPPHIRE_GEM": 0,
     "FISH_BAIT": 20,
     "SNOW_BLOCK": 4,
     "ENCHANTED_BAKED_POTATO": 25600,
@@ -431,7 +431,7 @@ while True:
                     if profitable_npc_items_sell_price[i] >= 0:
                         num = num + 1
                         try:
-                            print(f"{profitable_items[i]}% profit: {i}. Buy: {profitable_items_sell_price[i]}. Sell: {profitable_items_buy_price[i]}. NPC: {profitable_npc_items_sell_price[i]}. PPI: ${human_format(profit_per_inventory)} Vol: ${human_format(combined_coin_volume)}")
+                            print(f"{profitable_items[i]}% profit: {i}. PPI: ${human_format(profit_per_inventory)} Buy: {profitable_items_sell_price[i]}. Sell: {profitable_items_buy_price[i]}. NPC: {profitable_npc_items_sell_price[i]}. Vol: ${human_format(combined_coin_volume)}")
                         except Exception as e:
                             print(e, file=sys.stderr)
     
@@ -455,7 +455,7 @@ while True:
                 if sell_coin_volume >= 100000000:
                     num = num + 1
                     try:
-                        print(f"{profitable_npc_items[i]}% profit: {i}. Buy: {profitable_npc_items_buy_price[i]}. Sell: {profitable_npc_items_sell_price[i]}. PPI: ${human_format(profit_per_inventory)} sVol: ${human_format(sell_coin_volume)}")
+                        print(f"{profitable_npc_items[i]}% profit: {i}. PPI: ${human_format(profit_per_inventory)} Buy: {profitable_npc_items_buy_price[i]}. Sell: {profitable_npc_items_sell_price[i]}. sVol: ${human_format(sell_coin_volume)}")
                     except Exception as e:
                         print(f"Error: {e}")
 
